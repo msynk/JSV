@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JS View</title>
+</head>
+<body>
+    <div id="app">
+        <input id="input" />
+        <button onclick="test()">Test</button>
+    </div>
+
+    <script src="jsv.js"></script>
+    <script>
+        var vw = JSV.init('app');
+        function test() {
+            vw.input.value = Date.now();
+        }
+    </script>
+</body>
+</html>
