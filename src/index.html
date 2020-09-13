@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>JS View</title>
 </head>
+
 <body>
     <div id="app">
-        <input id="input" />
-        <button onclick="test()">Test</button>
+        <div>
+            <input id="input" />
+            <button onclick="test()">Test</button>
+        </div>
+        <div template="staticTemplate"></div>
+        <div id="dynamicContainer"></div>
     </div>
+
+    <template id="staticTemplate">
+        <span>This is a static template, try it:</span>
+        <button onclick="alert('ran!')">Run</button>
+    </template>
+
+    <template id="dynamicTemplate">
+        <div id="dynamicDiv"></div>
+        <span>This is a dynamic tempalte, try it:</span>
+        <button id="dynamicButton">Run</button>
+    </template>
 
     <script src="jsv.js"></script>
     <script>
         var vw = JSV.init('app');
+        var dynamicTemplate = JSV.template('dynamicTemplate');
+
+        vw.dynamicContainer.appendChild(dynamicTemplate(function (ctx) {
+            ctx.dynamicDiv.textContent = Date.now();
+            ctx.dynamicButton.onclick = function () { ctx.dynamicDiv.textContent = Date.now(); }
+        }));
+
         function test() {
             vw.input.value = Date.now();
         }
     </script>
 </body>
+
 </html>
