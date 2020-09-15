@@ -28,16 +28,17 @@
 
     <script src="jsv.js"></script>
     <script>
-        var vw = JSV.init('app');
-        var dynamicTemplate = JSV.template('dynamicTemplate');
+        var app = JSV('app'),
+            appCtx = app.context,
+            dynamicTemplate = app.template('dynamicTemplate');
 
-        vw.dynamicContainer.appendChild(dynamicTemplate(function (ctx) {
+        appCtx.dynamicContainer.appendChild(dynamicTemplate(function (ctx) {
             ctx.dynamicDiv.textContent = Date.now();
             ctx.dynamicButton.onclick = function () { ctx.dynamicDiv.textContent = Date.now(); }
         }));
 
         function test() {
-            vw.input.value = Date.now();
+            appCtx.input.value = Date.now();
         }
     </script>
 </body>

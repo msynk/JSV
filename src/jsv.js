@@ -1,16 +1,16 @@
 var JSV = (function () {
     var _containerId, _container, _states = {};
 
-    return {
-        init: init,
-        template: template,
-        state: state
-    };
+    return JSV;
 
-    function init(id) {
+    function JSV(id) {
         _containerId = id;
         _container = document.getElementById(id);
-        return mount(_container);
+        return {
+            context: mount(_container),
+            template: template,
+            state: state
+        }
     }
 
     // ========================================================================
